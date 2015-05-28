@@ -12,8 +12,9 @@ build
 build-info.json
 
 
-.idea/**.*
+.idea
 Api
+CDN
 FrontEnd
 Core
 Projections
