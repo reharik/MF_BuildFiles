@@ -12,7 +12,7 @@ build
 build-info.json
 
 
-.idea
+.idea/
 Api
 FrontEnd
 Core
