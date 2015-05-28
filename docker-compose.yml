@@ -15,3 +15,9 @@ eventstore:
   ports:
     - 2113:2113
     - 1113:1113
+api:
+  build: Api
+  link:
+    - mongo
+    - eventstore
+    - cdn
