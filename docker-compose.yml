@@ -1,0 +1,17 @@
+datacontainer:
+  build: DataContainer
+cdn:
+  build: CDN
+mongo:
+  build: Mongo
+  volumes_from:
+    - datacontainer
+  ports:
+    - 27017:27017
+eventstore:
+  build: EventStore
+  volumes_from:
+    - datacontainer
+  ports:
+    - 2113:2113
+    - 1113:1113
