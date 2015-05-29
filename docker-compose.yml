@@ -17,7 +17,8 @@ eventstore:
     - 1113:1113
 api:
   build: Api
-  link:
+  volumes_from:
+    - cdn
+  links:
     - mongo
     - eventstore
-    - cdn
