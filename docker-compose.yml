@@ -20,5 +20,5 @@ api:
   volumes_from:
     - cdn
   links:
-    - mongo
-    - eventstore
+    - mongo:mongo
+    - eventstore:eventstore

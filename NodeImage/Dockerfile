@@ -16,6 +16,9 @@ RUN \
   echo APT-GET PACKAGES INSTALLED && \
   apt-get clean && \
   echo APT-GET CLEANED && \
+  curl -sL https://deb.nodesource.com/setup_0.12 | bash - && \
+  apt-get -y install nodejs && \
+  echo NODE INSTALLED && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
   echo REMOVED TEMPORARY FILES
  # curl https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash && \
