@@ -1,9 +1,9 @@
 datacontainer:
   build: DataContainer
-cdn:
-  build: CDN
-  ports:
-    - 9090:80
+#cdn:
+ # build: CDN
+  #ports:
+   # - 9090:80
 mongo:
   build: Mongo
   volumes_from:
@@ -12,14 +12,14 @@ mongo:
     - 27017:27017
 eventstore:
   build: EventStore
-  volumes_from:
-    - datacontainer
+#  volumes_from:
+ #   - datacontainer  
   ports:
     - 2113:2113
     - 1113:1113
-api:
-  build: Api
-  links:
-    - mongo:mongo
-    - eventstore:eventstore
-    - cdn:cdn
+#api:
+ # build: Api
+  #links:
+   # - mongo:mongo
+   # - eventstore:eventstore
+  #  - cdn:cdn
