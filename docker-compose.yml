@@ -4,12 +4,20 @@ datacontainer:
  # build: CDN
   #ports:
    # - 9090:80
-mongo:
-  build: Mongo
-  volumes_from:
-    - datacontainer
+postgres:
+  image: postgres
+  environment:
+    - LANG=en_US.UTF-8
+    - POSTGRES_PASSWORD=password
+#    - PGDATA=datacontainer???
   ports:
-    - 27017:27017
+    - 5432:5432
+#mongo:
+#  build: Mongo
+#  volumes_from:
+#    - datacontainer
+#  ports:
+#    - 27017:27017
 eventstore:
   build: EventStore
 #  volumes_from:
@@ -20,6 +28,6 @@ eventstore:
 #api:
  # build: Api
   #links:
-   # - mongo:mongo
+   # - postgres:postgres
    # - eventstore:eventstore
   #  - cdn:cdn
