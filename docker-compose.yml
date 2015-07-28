@@ -1,9 +1,9 @@
 datacontainer:
   build: DataContainer
-#cdn:
- # build: CDN
-  #ports:
-   # - 9090:80
+frontend:
+  build: FrontEnd
+  ports:
+    - 9090:80
 postgres:
   image: postgres
   environment:
@@ -25,9 +25,9 @@ eventstore:
   ports:
     - 2113:2113
     - 1113:1113
-#api:
- # build: Api
-  #links:
-   # - postgres:postgres
-   # - eventstore:eventstore
-  #  - cdn:cdn
+api:
+  build: Api
+  links:
+    - postgres:postgres
+    - eventstore:eventstore
+    - frontend:frontend
