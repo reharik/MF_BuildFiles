@@ -24,4 +24,14 @@ api:
     - frontend:frontend
   ports:
     - 3000:3000
+domain:
+  build: Domain
+  links:
+    - postgres:postgres
+    - eventstore:eventstore
+projections:
+  build: Projections
+  links:
+    - postgres:postgres
+    - eventstore:eventstore
 

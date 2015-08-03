@@ -1,7 +1,7 @@
 datacontainer:
   build: DataContainer
 frontend:
-  build: FrontEnd
+  build: Frontend
   ports:
     - 9090:80
 postgres:
@@ -26,6 +26,11 @@ api:
     - 3000:3000
 domain:
   build: Domain
+  links:
+    - postgres:postgres
+    - eventstore:eventstore
+projections:
+  build: Projections
   links:
     - postgres:postgres
     - eventstore:eventstore

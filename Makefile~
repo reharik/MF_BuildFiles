@@ -20,8 +20,14 @@ comAndPush:
 rmDomain:
 	docker stop mfbuildfiles_domain_1 && docker rm mfbuildfiles_domain_1 && docker rmi mfbuildfiles_domain
 
-rmDomain:
+rmApi:
 	docker stop mfbuildfiles_api_1 && docker rm mfbuildfiles_api_1 && docker rmi mfbuildfiles_api
+
+rmPostgres:
+	docker stop mfbuildfiles_postgres_1 && docker rm mfbuildfiles_postgres_1 && docker rmi postgres
+
+rmProjections:
+	docker stop mfbuildfiles_projections_1 && docker rm mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections
 
 nodeContainer: 
 	cd NodeImage && docker build -t mf/nodebox . && cd ..
@@ -34,4 +40,13 @@ remove:
 
 removeImages: 
 	docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -aq)
+
+cleanProjects:
+	docker rm -f mfbuildfiles_domain_1 && docker rmi mfbuildfiles_domain && \
+	docker rm -f mfbuildfiles_api_1 && docker rmi mfbuildfiles_api && \
+	docker rm -f mfbuildfiles_postgres_1 && docker rmi postgres && \
+	docker rm -f mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections 
+
+deploy:
+	cd ../MF_Core && gulp && cd ../MF_Api && gulp deploy && cd ../MF_Domain && gulp deploy && cd ../MF_Projections && gulp deploy && cd ..
 

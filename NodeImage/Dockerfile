@@ -23,6 +23,7 @@ RUN \
   echo REMOVED TEMPORARY FILES 
 ADD /package.json /tmp/package.json
 RUN cd /tmp && npm install && cp -a /tmp/node_modules /opt/app/current/node_modules
+RUN npm install -g babel
 
  # curl https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash && \
  # echo NVM INSTALLED
