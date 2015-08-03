@@ -20,9 +20,6 @@ RUN \
   apt-get -y install nodejs && \
   echo NODE INSTALLED && \
   rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-  echo REMOVED TEMPORARY FILES 
-ADD /package.json /tmp/package.json
-RUN cd /tmp && npm install && cp -a /tmp/node_modules /opt/app/current/node_modules
-
+  echo REMOVED TEMPORARY FILES
  # curl https://raw.githubusercontent.com/creationix/nvm/v0.25.1/install.sh | bash && \
  # echo NVM INSTALLED

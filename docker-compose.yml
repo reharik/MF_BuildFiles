@@ -29,4 +29,4 @@ domain:
   links:
     - postgres:postgres
     - eventstore:eventstore
-     
+

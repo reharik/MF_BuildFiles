@@ -9,34 +9,19 @@ postgres:
   environment:
     - LANG=en_US.UTF-8
     - POSTGRES_PASSWORD=password
-#    - PGDATA=datacontainer???
   ports:
     - 5432:5432
-#mongo:
-#  build: Mongo
-#  volumes_from:
-#    - datacontainer
-#  ports:
-#    - 27017:27017
 eventstore:
   build: EventStore
-#  volumes_from:
- #   - datacontainer  
   ports:
     - 2113:2113
     - 1113:1113
 api:
   build: Api
-  name: api
   links:
     - postgres:postgres
     - eventstore:eventstore
     - frontend:frontend
   ports:
     - 3000:3000
-domain:
-  build: Domain
-  links:
-    - postgres:postgres
-    - eventstore:eventstore
-     
+
