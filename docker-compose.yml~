@@ -1,7 +1,7 @@
 datacontainer:
   build: DataContainer
 frontend:
-  build: FrontEnd
+  build: Frontend
   ports:
     - 9090:80
 postgres:
@@ -16,6 +16,8 @@ eventstore:
   ports:
     - 2113:2113
     - 1113:1113
+  volumes_from:
+    - datacontainer
 api:
   build: Api
   links:

@@ -4,21 +4,25 @@ SHELL := /bin/zsh
 pull:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
-	cd ../MF_Core && git pull origin master && \
+	cd ../MF_Infrastructure && git pull origin master && \
 	cd ../MF_Domain && git pull origin master && \
+	cd ../MF_MessageBinders && git pull origin master && \
+	cd ../MF_Workflows && git pull origin master && \
 	cd ../MF_FrontEnd && git pull origin master && \
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
 	
 comAndPush:
 	git com "commit and push"; git push origin master; \
 	cd ../MF_Api && git com "commit and push"; git push origin master; \
-	cd ../MF_Core && git com "commit and push"; git push origin master; \
+	cd ../MF_Infrastructure && git com "commit and push"; git push origin master; \
 	cd ../MF_Domain && git com "commit and push"; git push origin master; \
+	cd ../MF_MessageBinders && git com "commit and push"; git push origin master; \
+	cd ../MF_Workflows && git com "commit and push"; git push origin master; \
 	cd ../MF_FrontEnd && git com "commit and push"; git push origin master; \
 	cd ../MF_Projections && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
 
-rmDomain:
-	docker stop mfbuildfiles_domain_1 && docker rm mfbuildfiles_domain_1 && docker rmi mfbuildfiles_domain
+rmWorkflows:
+	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
 
 rmApi:
 	docker stop mfbuildfiles_api_1 && docker rm mfbuildfiles_api_1 && docker rmi mfbuildfiles_api
@@ -29,24 +33,39 @@ rmPostgres:
 rmProjections:
 	docker stop mfbuildfiles_projections_1 && docker rm mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections
 
+rmEventstore:
+	docker stop mfbuildfiles_eventstore_1 && docker rm mfbuildfiles_eventstore_1 && docker rmi mfbuildfiles_eventstore
+
+rmData:
+	docker stop mfbuildfiles_datacontainer_1 && docker rm mfbuildfiles_datacontainer_1 && docker rmi mfbuildfiles_datacontainer
+
 nodeContainer: 
 	cd NodeImage && docker build -t mf/nodebox . && cd ..
 
-stop:
-	docker stop $(docker ps -aq)
+stopALL:
+	docker stop $$(docker ps -aq)
 
-remove:
-	docker stop $(docker ps -aq) && docker rm $(docker ps -aq)
+removeALL:
+	docker stop $$(docker ps -aq) && docker rm $$(docker ps -aq)
 
-removeImages: 
-	docker stop $(docker ps -aq) && docker rm $(docker ps -aq) && docker rmi $(docker images -aq)
+removeImagesALL: 
+	docker stop $$(docker ps -aq) && docker rm $$(docker ps -aq) && docker rmi $$(docker images -aq)
 
 cleanProjects:
-	docker rm -f mfbuildfiles_domain_1 && docker rmi mfbuildfiles_domain && \
+	docker rm -f mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows && \
 	docker rm -f mfbuildfiles_api_1 && docker rmi mfbuildfiles_api && \
 	docker rm -f mfbuildfiles_postgres_1 && \
 	docker rm -f mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections 
 
 deploy:
-	cd ../MF_Core && gulp && cd ../MF_Api && gulp deploy && cd ../MF_Domain && gulp deploy && cd ../MF_Projections && gulp deploy && cd ..
+	cd ../MF_Infrastructure && gulp && \
+	cd ../MF_MessageBinders && gulp && \
+	cd ../MF_Domain && gulp && \
+	cd ../MF_Api && gulp deploy && \
+	cd ../MF_Workflows && gulp deploy && \
+	cd ../MF_Projections && gulp deploy && \
+	cd ..
+
+cleanALL:
+	docker rm -f $$(docker ps -aq) && docker rmi $$(docker images -aq) && cd NodeImage && docker build -t mf/nodebox . && cd ..
 
