@@ -4,8 +4,9 @@ SHELL := /bin/zsh
 pull:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
-	cd ../MF_Core && git pull origin master && \
+	cd ../MF_Infrastructure && git pull origin master && \
 	cd ../MF_Domain && git pull origin master && \
+	cd ../MF_MessageBinders && git pull origin master && \
 	cd ../MF_Workflows && git pull origin master && \
 	cd ../MF_FrontEnd && git pull origin master && \
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
@@ -13,8 +14,9 @@ pull:
 comAndPush:
 	git com "commit and push"; git push origin master; \
 	cd ../MF_Api && git com "commit and push"; git push origin master; \
-	cd ../MF_Core && git com "commit and push"; git push origin master; \
+	cd ../MF_Infrastructure && git com "commit and push"; git push origin master; \
 	cd ../MF_Domain && git com "commit and push"; git push origin master; \
+	cd ../MF_MessageBinders && git com "commit and push"; git push origin master; \
 	cd ../MF_Workflows && git com "commit and push"; git push origin master; \
 	cd ../MF_FrontEnd && git com "commit and push"; git push origin master; \
 	cd ../MF_Projections && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
@@ -56,7 +58,13 @@ cleanProjects:
 	docker rm -f mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections 
 
 deploy:
-	cd ../MF_Core && gulp && cd ../MF_Api && gulp deploy && cd ../MF_Workflows && gulp deploy && cd ../MF_Projections && gulp deploy && cd ..
+	cd ../MF_Infrastructure && gulp && \
+	cd ../MF_MessageBinders && gulp && \
+	cd ../MF_Domain && gulp && \
+	cd ../MF_Api && gulp deploy && \
+	cd ../MF_Workflows && gulp deploy && \
+	cd ../MF_Projections && gulp deploy && \
+	cd ..
 
 cleanALL:
 	docker rm -f $$(docker ps -aq) && docker rmi $$(docker images -aq) && cd NodeImage && docker build -t mf/nodebox . && cd ..

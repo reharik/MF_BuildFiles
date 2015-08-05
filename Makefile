@@ -12,14 +12,14 @@ pull:
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
 	
 comAndPush:
-	git com "commit and push"; git push origin master; \
-	cd ../MF_Api && git com "commit and push"; git push origin master; \
-	cd ../MF_Infrastructure && git com "commit and push"; git push origin master; \
-	cd ../MF_Domain && git com "commit and push"; git push origin master; \
-	cd ../MF_MessageBinders && git com "commit and push"; git push origin master; \
-	cd ../MF_Workflows && git com "commit and push"; git push origin master; \
-	cd ../MF_FrontEnd && git com "commit and push"; git push origin master; \
-	cd ../MF_Projections && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
+	echo "MF_BuildFiles"; git com "commit and push"; git push origin master; \
+	cd ../MF_Api && echo "MF_Api" && git com "commit and push"; git push origin master; \
+	cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Domain && echo "MF_Domain" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Workflows && echo "MF_Workflows" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Projections && echo "MF_Projections" && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
 
 rmWorkflows:
 	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
