@@ -1,6 +1,8 @@
+libs_for_gcc = -lgnu
 NAME=mf/api
 SHELL := /bin/zsh
-
+CONTAINERS=$(shell docker ps -aq)
+IMAGES=$(shell docker images -aq)
 pull:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
@@ -12,14 +14,14 @@ pull:
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
 	
 comAndPush:
-	git com "commit and push"; git push origin master; \
-	cd ../MF_Api && git com "commit and push"; git push origin master; \
-	cd ../MF_Infrastructure && git com "commit and push"; git push origin master; \
-	cd ../MF_Domain && git com "commit and push"; git push origin master; \
-	cd ../MF_MessageBinders && git com "commit and push"; git push origin master; \
-	cd ../MF_Workflows && git com "commit and push"; git push origin master; \
-	cd ../MF_FrontEnd && git com "commit and push"; git push origin master; \
-	cd ../MF_Projections && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
+	echo "MF_BuildFiles"; git com "commit and push"; git push origin master; \
+	cd ../MF_Api && echo "MF_Api" && git com "commit and push"; git push origin master; \
+	cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Domain && echo "MF_Domain" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Workflows && echo "MF_Workflows" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git com "commit and push"; git push origin master; \
+	cd ../MF_Projections && echo "MF_Projections" && git com "commit and push"; git push origin master; cd ../MF_BuildFiles;
 
 rmWorkflows:
 	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
@@ -67,5 +69,17 @@ deploy:
 	cd ..
 
 cleanALL:
-	docker rm -f $$(docker ps -aq) && docker rmi $$(docker images -aq) && cd NodeImage && docker build -t mf/nodebox . && cd ..
+	echo "stopping containers" 
+	[ -z $(docker ps -q) ] || docker stop $$(docker ps -q)
+	echo "remove containers" 
+	[ -z $(docker ps -aq) ] || docker rm -f $$(docker ps -aq)
+	echo "remove images" 
+	[[ -z $$(docker images -q ) ]] || docker rmi -f $$(docker images -q )
+	echo "move to node dir"
+	cd NodeImage
+	pwd
+	echo "build node image"
+	docker build -t mf/nodebox .
+	echo "return to buildfiles"
+	cd ..
 

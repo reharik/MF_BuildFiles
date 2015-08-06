@@ -1,6 +1,8 @@
+libs_for_gcc = -lgnu
 NAME=mf/api
 SHELL := /bin/zsh
-
+CONTAINERS=$(shell docker ps -aq)
+IMAGES=$(shell docker images -aq)
 pull:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
@@ -67,5 +69,14 @@ deploy:
 	cd ..
 
 cleanALL:
-	docker rm -f $$(docker ps -aq) && docker rmi $$(docker images -aq) && cd NodeImage && docker build -t mf/nodebox . && cd ..
+	echo "stopping containers" 
+	[ -z $(docker ps -q) ] || docker stop $$(docker ps -q)
+	echo "remove containers" 
+	[ -z $(docker ps -aq) ] || docker rm -f $$(docker ps -aq)
+	echo "remove images" 
+	[[ -z $$(docker images -q ) ]] || docker rmi -f $$(docker images -q )
+	echo "move to node dir"
+	cd NodeImage && docker build -t mf/nodebox .
+	echo "return to buildfiles"
+	cd ..
 
