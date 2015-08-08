@@ -70,11 +70,14 @@ deploy:
 
 cleanALL:
 	echo "stopping containers" 
-	[ -z $(docker ps -q) ] || docker stop $$(docker ps -q)
+#	[ -z $(docker ps -q) ] || docker stop $$(docker ps -q)
+	#docker stop $$(docker ps -q)
 	echo "remove containers" 
-	[ -z $(docker ps -aq) ] || docker rm -f $$(docker ps -aq)
+#	[ -z $(docker ps -aq) ] || docker rm -f $$(docker ps -aq)
+	docker rm -f $$(docker ps -aq)
 	echo "remove images" 
-	[[ -z $$(docker images -q ) ]] || docker rmi -f $$(docker images -q )
+#	[[ -z $$(docker images -q ) ]] || docker rmi -f $$(docker images -q )
+	docker rmi -f $$(docker images -q )
 	echo "move to node dir"
 	cd NodeImage && docker build -t mf/nodebox .
 	echo "return to buildfiles"
