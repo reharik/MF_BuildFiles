@@ -36,4 +36,3 @@ projections:
   links:
     - postgres:postgres
     - eventstore:eventstore
-
