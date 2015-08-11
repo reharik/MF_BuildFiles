@@ -16,8 +16,8 @@ eventstore:
   ports:
     - 2113:2113
     - 1113:1113
-  volumes_from:
-    - datacontainer
+ # volumes_from:
+ #   - datacontainer
 api:
   build: Api
   links:
@@ -26,8 +26,8 @@ api:
     - frontend:frontend
   ports:
     - 3000:3000
-domain:
-  build: Domain
+workflows:
+  build: Workflows
   links:
     - postgres:postgres
     - eventstore:eventstore

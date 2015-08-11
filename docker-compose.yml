@@ -1,5 +1,5 @@
-#datacontainer:
-#  build: DataContainer
+datacontainer:
+  build: DataContainer
 frontend:
   build: Frontend
   ports:
@@ -16,8 +16,8 @@ eventstore:
   ports:
     - 2113:2113
     - 1113:1113
- # volumes_from:
- #   - datacontainer
+  volumes_from:
+    - datacontainer
 api:
   build: Api
   links:
@@ -36,4 +36,3 @@ projections:
   links:
     - postgres:postgres
     - eventstore:eventstore
-

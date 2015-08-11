@@ -3,6 +3,7 @@
   "version": "0.0.1",
   "dependencies": {
     "JSON": "^1.0.0",
+    "bcrypt": "0.8.x",
     "bluebird": "^2.9.33",
     "config": "^1.14.0",
     "dagon": "0.0.2",
