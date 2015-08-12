@@ -11,7 +11,7 @@ module.exports = function(gesDispatcher, commandHandlers, logger){
                 targetStreamType:'command',
             handlers:commandHandlers.map(x=>new x())
         });
-	console.log("FUCK YOUOUOUOUOUO");
+
         dispatcher.startDispatching();
         },3000);
     }

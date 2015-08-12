@@ -26,13 +26,20 @@ api:
     - frontend:frontend
   ports:
     - 3000:3000
+  volumes:
+    - Api/app/src:/opt/app/current/src
 workflows:
   build: Workflows
   links:
     - postgres:postgres
     - eventstore:eventstore
+  volumes:
+    - Workflows/app/src:/opt/app/current/src
 projections:
   build: Projections
   links:
     - postgres:postgres
     - eventstore:eventstore
+  volumes:
+    - Projections/app/src:/opt/app/current/src
+
