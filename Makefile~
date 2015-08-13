@@ -16,11 +16,11 @@ pull:
 com:
 	echo "MF_BuildFiles"; git com "commit and push"; \
 	cd ../MF_Api && echo "MF_Api" && git com "commit and push"; \
-	cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git com "commit and push"; \
-	cd ../MF_Domain && echo "MF_Domain" &&  git com "commit and push"; \
-	cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git com "commit and push";  \
-	cd ../MF_Workflows && echo "MF_Workflows" &&  git com "commit and push"; \
-	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git com "commit and push"; \
+	cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com "commit and push"; \
+	cd ../MF_Domain && echo "MF_Domain" && git com "commit and push"; \
+	cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com "commit and push";  \
+	cd ../MF_Workflows && echo "MF_Workflows" && git com "commit and push"; \
+	cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com "commit and push"; \
 	cd ../MF_Projections && echo "MF_Projections" && git com "commit and push"; cd ../MF_BuildFiles;
 
 
