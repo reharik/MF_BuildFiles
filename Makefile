@@ -1,8 +1,7 @@
 libs_for_gcc = -lgnu
-NAME=mf/api
-SHELL := /bin/zsh
-CONTAINERS=$(shell docker ps -aq)
-IMAGES=$(shell docker images -aq)
+COMMENT="commit and push"
+
+
 pull:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
@@ -14,14 +13,14 @@ pull:
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
 	
 com:
-	echo "MF_BuildFiles"; git com "commit and push"; \
-	cd ../MF_Api && echo "MF_Api" && git com "commit and push"; \
-	cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com "commit and push"; \
-	cd ../MF_Domain && echo "MF_Domain" && git com "commit and push"; \
-	cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com "commit and push";  \
-	cd ../MF_Workflows && echo "MF_Workflows" && git com "commit and push"; \
-	cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com "commit and push"; \
-	cd ../MF_Projections && echo "MF_Projections" && git com "commit and push"; cd ../MF_BuildFiles;
+	echo "MF_BuildFiles"; git com $(COMMENT); \
+	cd ../MF_Api && echo "MF_Api" && git com $(COMMENT); \
+	cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com $(COMMENT); \
+	cd ../MF_Domain && echo "MF_Domain" && git com $(COMMENT); \
+	cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com $(COMMENT);  \
+	cd ../MF_Workflows && echo "MF_Workflows" && git com $(COMMENT); \
+	cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com $(COMMENT); \
+	cd ../MF_Projections && echo "MF_Projections" && git com $(COMMENT); cd ../MF_BuildFiles;
 
 
 push:

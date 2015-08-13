@@ -34,7 +34,7 @@ push:
 	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
 	cd ../MF_Projections && echo "MF_Projections" && git push origin master; cd ../MF_BuildFiles;
 
-comAndPush: com, push
+comAndPush: com push
 
 rmWorkflows:
 	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
