@@ -6,9 +6,9 @@
     "bcrypt": "0.8.x",
     "bluebird": "^2.9.33",
     "config": "^1.14.0",
-    "dagon": "^0.1.1",
+    "dagon": "git+https://github.com/reharik/dagon.git#functional",
     "extend": "^3.0.0",
-    "ges-client": "^0.9.1",
+    "ges-client": "0.10.0",
     "invariant": "^2.1.0",
     "pg-bluebird": "^1.0.8",
     "rx": "^2.5.3",
@@ -20,7 +20,7 @@
     "gulp": "^3.9.0",
     "mocha": "^2.2.5",
     "mochawait": "^2.0.1",
-    "must": "^0.12.0",
+    "must": "^0.13.0-beta2",
     "uuid": "^2.0.1"
   }
 }
