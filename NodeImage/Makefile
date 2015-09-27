@@ -1,4 +1,4 @@
-NAME=mf/nodebox
+NAME=mf_nodebox
 #VERSION=$$(git rev-parse --short HEAD)
 
 docker-build:
