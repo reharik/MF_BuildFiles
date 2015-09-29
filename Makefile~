@@ -1,5 +1,5 @@
 libs_for_gcc = -lgnu
-M=commit and push
+M="commit and push"
 
 
 pull:

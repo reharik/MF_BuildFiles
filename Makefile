@@ -2,7 +2,7 @@ libs_for_gcc = -lgnu
 M="commit and push"
 
 
-pull:
+pullMF:
 	git pull origin master && \
 	cd ../MF_Api && git pull origin master && \
 	cd ../MF_Infrastructure && git pull origin master && \
@@ -12,7 +12,7 @@ pull:
 	cd ../MF_FrontEnd && git pull origin master && \
 	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
 	
-com:
+comMF:
 	echo "MF_BuildFiles"; git com $(M); \
 	cd ../MF_Api && echo "MF_Api" && git com $(M); \
 	cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com $(M); \
@@ -23,7 +23,7 @@ com:
 	cd ../MF_Projections && echo "MF_Projections" && git com $(M); cd ../MF_BuildFiles;
 
 
-push:
+pushMF:
 	echo "MF_BuildFiles"; git push origin master; \
 	cd ../MF_Api && echo "MF_Api" &&  git push origin master; \
 	cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git push origin master; \
@@ -33,7 +33,37 @@ push:
 	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
 	cd ../MF_Projections && echo "MF_Projections" && git push origin master; cd ../MF_BuildFiles;
 
-comAndPush: com push
+pullCore:
+	echo "core_eventDispatcher" && cd core_eventDispatcher && git pull origin master && \
+	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase && git pull origin master && \
+	echo "core_eventModels" && cd ../core_eventModels && git pull origin master && \
+	echo "core_eventRepository" && cd ../core_eventRepository && git pull origin master && \
+	echo "core_eventStore" && cd ../core_eventStore && git pull origin master && \
+	echo "core_readStoreRepository" && cd ../core_readStoreRepository && git pull origin master && \
+	echo "core_logger" && cd ../core_logger && git pull origin master && cd ..; 
+	
+comCore:
+	echo "core_eventDispatcher" && cd core_eventDispatcher && git com $(M); \
+	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase && git com $(M); \
+	echo "core_eventModels" && cd ../core_eventModels && git com $(M); \
+	echo "core_eventRepository" && cd ../core_eventRepository && git com $(M);  \
+	echo "core_eventStore" && cd ../core_eventStore && git com $(M); \
+	echo "core_readStoreRepository" && cd ../core_readStoreRepository && git com $(M); \
+	echo "core_logger" && cd ../core_logger && git com $(M); cd ..
+
+
+pushCore:
+	echo "core_eventDispatcher" && cd core_eventDispatcher &&  git push origin master; \
+	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase &&  git push origin master; \
+	echo "core_eventModels" && cd ../core_eventModels &&  git push origin master; \
+	echo "core_eventRepository" && cd ../core_eventRepository &&  git push origin master; \
+	echo "core_eventStore" && cd ../core_eventStore && git push origin master; \
+	echo "core_readStoreRepository" && cd ../core_readStoreRepository &&  git push origin master; \
+	echo "core_logger" && cd ../core_logger && git push origin master; cd ../
+
+comAndPushMF: comMF pushMF
+
+comAndPushCore: comCore pushCore
 
 rmWorkflows:
 	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
