@@ -4,61 +4,61 @@ M="commit and push"
 
 pullMF:
 	git pull origin master && \
-	cd ../MF_Api && git pull origin master && \
-	cd ../MF_Infrastructure && git pull origin master && \
-	cd ../MF_Domain && git pull origin master && \
-	cd ../MF_MessageBinders && git pull origin master && \
-	cd ../MF_Workflows && git pull origin master && \
-	cd ../MF_FrontEnd && git pull origin master && \
-	cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles; 
+	#cd ../MF_Api && git pull origin master && \
+	#cd ../MF_Infrastructure && git pull origin master && \
+	cd ../mf_domain && git pull origin master && \
+	#cd ../MF_MessageBinders && git pull origin master && \
+	cd ../mf_workflows && git pull origin master && \
+	#cd ../MF_FrontEnd && git pull origin master && \
+	#cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles;
 	
 comMF:
 	echo "MF_BuildFiles"; git com $(M); \
-	cd ../MF_Api && echo "MF_Api" && git com $(M); \
-	cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com $(M); \
-	cd ../MF_Domain && echo "MF_Domain" && git com $(M); \
-	cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com $(M);  \
-	cd ../MF_Workflows && echo "MF_Workflows" && git com $(M); \
-	cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com $(M); \
-	cd ../MF_Projections && echo "MF_Projections" && git com $(M); cd ../MF_BuildFiles;
+	#cd ../MF_Api && echo "MF_Api" && git com $(M); \
+	#cd ../MF_Infrastructure && echo "MF_Infrastructure" && git com $(M); \
+	cd ../mf_domain && echo "MF_Domain" && git com $(M); \
+	#cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com $(M);  \
+	cd ../mf_workflows && echo "MF_Workflows" && git com $(M); \
+	#cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com $(M); \
+	#cd ../MF_Projections && echo "MF_Projections" && git com $(M); cd ../MF_BuildFiles;
 
 
 pushMF:
 	echo "MF_BuildFiles"; git push origin master; \
-	cd ../MF_Api && echo "MF_Api" &&  git push origin master; \
-	cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git push origin master; \
-	cd ../MF_Domain && echo "MF_Domain" &&  git push origin master; \
-	cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git push origin master; \
-	cd ../MF_Workflows && echo "MF_Workflows" && git push origin master; \
-	cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
-	cd ../MF_Projections && echo "MF_Projections" && git push origin master; cd ../MF_BuildFiles;
+	#cd ../MF_Api && echo "MF_Api" &&  git push origin master; \
+	#cd ../MF_Infrastructure && echo "MF_Infrastructure" &&  git push origin master; \
+	cd ../mf_domain && echo "MF_Domain" &&  git push origin master; \
+	#cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git push origin master; \
+	cd ../mf_workflows && echo "MF_Workflows" && git push origin master; \
+	#cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
+	#cd ../MF_Projections && echo "MF_Projections" && git push origin master; cd ../MF_BuildFiles;
 
 pullCore:
-	echo "core_eventDispatcher" && cd core_eventDispatcher && git pull origin master && \
-	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase && git pull origin master && \
-	echo "core_eventModels" && cd ../core_eventModels && git pull origin master && \
-	echo "core_eventRepository" && cd ../core_eventRepository && git pull origin master && \
-	echo "core_eventStore" && cd ../core_eventStore && git pull origin master && \
-	echo "core_readStoreRepository" && cd ../core_readStoreRepository && git pull origin master && \
+	echo "core_eventDispatcher" && cd ../core_eventdispatcher && git pull origin master && \
+	echo "core_eventHandlerBase" && cd ../core_eventhandlerbase && git pull origin master && \
+	echo "core_eventModels" && cd ../core_eventmodels && git pull origin master && \
+	echo "core_eventRepository" && cd ../core_eventrepository && git pull origin master && \
+	echo "core_eventStore" && cd ../core_eventstore && git pull origin master && \
+	echo "core_readStoreRepository" && cd ../core_readstorerepository && git pull origin master && \
 	echo "core_logger" && cd ../core_logger && git pull origin master && cd ..; 
 	
 comCore:
-	echo "core_eventDispatcher" && cd core_eventDispatcher && git com $(M); \
-	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase && git com $(M); \
-	echo "core_eventModels" && cd ../core_eventModels && git com $(M); \
-	echo "core_eventRepository" && cd ../core_eventRepository && git com $(M);  \
-	echo "core_eventStore" && cd ../core_eventStore && git com $(M); \
-	echo "core_readStoreRepository" && cd ../core_readStoreRepository && git com $(M); \
+	echo "core_eventDispatcher" && cd ../core_eventdispatcher && git com $(M); \
+	echo "core_eventHandlerBase" && cd ../core_eventhandlerbase && git com $(M); \
+	echo "core_eventModels" && cd ../core_eventmodels && git com $(M); \
+	echo "core_eventRepository" && cd ../core_eventrepository && git com $(M);  \
+	echo "core_eventStore" && cd ../core_eventstore && git com $(M); \
+	echo "core_readStoreRepository" && cd ../core_readstorerepository && git com $(M); \
 	echo "core_logger" && cd ../core_logger && git com $(M); cd ..
 
 
 pushCore:
-	echo "core_eventDispatcher" && cd core_eventDispatcher &&  git push origin master; \
-	echo "core_eventHandlerBase" && cd ../core_eventHandlerBase &&  git push origin master; \
-	echo "core_eventModels" && cd ../core_eventModels &&  git push origin master; \
-	echo "core_eventRepository" && cd ../core_eventRepository &&  git push origin master; \
-	echo "core_eventStore" && cd ../core_eventStore && git push origin master; \
-	echo "core_readStoreRepository" && cd ../core_readStoreRepository &&  git push origin master; \
+	echo "core_eventDispatcher" && cd ../core_eventdispatcher &&  git push origin master; \
+	echo "core_eventHandlerBase" && cd ../core_eventhandlerbase &&  git push origin master; \
+	echo "core_eventModels" && cd ../core_eventmodels &&  git push origin master; \
+	echo "core_eventRepository" && cd ../core_eventrepository &&  git push origin master; \
+	echo "core_eventStore" && cd ../core_eventstore && git push origin master; \
+	echo "core_readStoreRepository" && cd ../core_readstorerepository &&  git push origin master; \
 	echo "core_logger" && cd ../core_logger && git push origin master; cd ../
 
 comAndPushMF: comMF pushMF
