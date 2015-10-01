@@ -10,7 +10,8 @@ pullMF:
 	#cd ../MF_MessageBinders && git pull origin master && \
 	cd ../mf_workflows && git pull origin master && \
 	#cd ../MF_FrontEnd && git pull origin master && \
-	#cd ../MF_Projections && git pull origin master && cd ../MF_BuildFiles;
+	#cd ../MF_Projections && git pull origin master && \
+	cd ../mf_buildFiles;
 	
 comMF:
 	echo "MF_BuildFiles"; git com $(M); \
