@@ -9,6 +9,7 @@ pullMF:
 	cd ../mf_domain && git pull origin master && \
 	#cd ../MF_MessageBinders && git pull origin master && \
 	cd ../mf_workflows && git pull origin master && \
+	cd ../mf_data && git pull origin master && \
 	#cd ../MF_FrontEnd && git pull origin master && \
 	#cd ../MF_Projections && git pull origin master && \
 	cd ../mf_buildFiles;
@@ -20,6 +21,7 @@ comMF:
 	cd ../mf_domain && echo "MF_Domain" && git com $(M); \
 	#cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com $(M);  \
 	cd ../mf_workflows && echo "MF_Workflows" && git com $(M); \
+	cd ../mf_data && echo "MF_data" && git com $(M); \
 	#cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com $(M); \
 	#cd ../MF_Projections && echo "MF_Projections" && git com $(M); cd ../MF_BuildFiles;
 
@@ -31,6 +33,7 @@ pushMF:
 	cd ../mf_domain && echo "MF_Domain" &&  git push origin master; \
 	#cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git push origin master; \
 	cd ../mf_workflows && echo "MF_Workflows" && git push origin master; \
+	cd ../mf_data && echo "mf_data" && git push origin master; \
 	#cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
 	#cd ../MF_Projections && echo "MF_Projections" && git push origin master; cd ../MF_BuildFiles;
 
