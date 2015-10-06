@@ -6,7 +6,7 @@ pullMF:
 	git pull origin master && \
 	cd ../mf_api && git pull origin master && \
 	cd ../mf_domain && git pull origin master && \
-	#cd ../MF_MessageBinders && git pull origin master && \
+	cd ../mf_messageBinders && git pull origin master && \
 	cd ../mf_workflows && git pull origin master && \
 	cd ../mf_data && git pull origin master && \
 	#cd ../MF_FrontEnd && git pull origin master && \
@@ -16,9 +16,9 @@ pullMF:
 comMF:
 	echo "MF_BuildFiles"; git com $(M); \
 	cd ../mf_api && echo "mf_api" && git com $(M); \
-	cd ../mf_domain && echo "MF_Domain" && git com $(M); \
-	#cd ../MF_MessageBinders && echo "MF_MessageBinders" && git com $(M);  \
-	cd ../mf_workflows && echo "MF_Workflows" && git com $(M); \
+	cd ../mf_domain && echo "mf_domain" && git com $(M); \
+	cd ../mf_messageBinders && echo "mf_messageBinders" && git com $(M);  \
+	cd ../mf_workflows && echo "mf_workflows" && git com $(M); \
 	cd ../mf_data && echo "MF_data" && git com $(M); \
 	#cd ../MF_FrontEnd && echo "MF_FrontEnd" && git com $(M); \
 	cd ../mf_projections && echo "mf_projections" && git com $(M); cd ../mf_buildfiles;
@@ -27,9 +27,9 @@ comMF:
 pushMF:
 	echo "MF_BuildFiles"; git push origin master; \
 	cd ../mf_api && echo "mf_api" &&  git push origin master; \
-	cd ../mf_domain && echo "MF_Domain" &&  git push origin master; \
-	#cd ../MF_MessageBinders && echo "MF_MessageBinders" &&  git push origin master; \
-	cd ../mf_workflows && echo "MF_Workflows" && git push origin master; \
+	cd ../mf_domain && echo "mf_domain" &&  git push origin master; \
+	cd ../mf_messageBinders && echo "mf_messageBinders" &&  git push origin master; \
+	cd ../mf_workflows && echo "mf_workflows" && git push origin master; \
 	cd ../mf_data && echo "mf_data" && git push origin master; \
 	#cd ../MF_FrontEnd && echo "MF_FrontEnd" &&  git push origin master; \
 	cd ../mf_projections && echo "mf_projections" && git push origin master; cd ../mf_buildfiles;
