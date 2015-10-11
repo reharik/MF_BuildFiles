@@ -12,7 +12,7 @@ pullMF:
 	#cd ../MF_FrontEnd && git pull origin master && \
 	cd ../mf_projections && git pull origin master && \
 	cd ../mf_buildFiles;
-	
+
 comMF:
 	echo "MF_BuildFiles"; git com $(M); \
 	cd ../mf_api && echo "mf_api" && git com $(M); \
@@ -41,8 +41,8 @@ pullCore:
 	echo "core_eventRepository" && cd ../core_eventrepository && git pull origin master && \
 	echo "core_eventStore" && cd ../core_eventstore && git pull origin master && \
 	echo "core_readStoreRepository" && cd ../core_readstorerepository && git pull origin master && \
-	echo "core_logger" && cd ../core_logger && git pull origin master && cd ..; 
-	
+	echo "core_logger" && cd ../core_logger && git pull origin master && cd ..;
+
 comCore:
 	echo "core_eventDispatcher" && cd ../core_eventdispatcher && git com $(M); \
 	echo "core_eventHandlerBase" && cd ../core_eventhandlerbase && git com $(M); \
@@ -66,63 +66,28 @@ comAndPushMF: comMF pushMF
 
 comAndPushCore: comCore pushCore
 
-rmWorkflows:
-	docker stop mfbuildfiles_workflows_1 && docker rm mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows
+buildNodeContainer:
+	cd NodeImage && docker build -t mf_nodebox . && cd ..
 
-rmApi:
-	docker stop mfbuildfiles_api_1 && docker rm mfbuildfiles_api_1 && docker rmi mfbuildfiles_api
+startWorkflows:
+	if [ docker images | grep mf_nodebox ]; then cd NodeImage && docker build -t mf_nodebox . && cd ..; fi
+	cd ../mf_workflows && make run
 
-rmPostgres:
-	docker stop mfbuildfiles_postgres_1 && docker rm mfbuildfiles_postgres_1 && docker rmi postgres
+startnode:
+	if [ docker images | grep mf_nodebox ]; then
+	cd NodeImage && docker build -t mf_nodebox . && cd ..; fi
 
-rmProjections:
-	docker stop mfbuildfiles_projections_1 && docker rm mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections
-
-rmEventstore:
-	docker stop mfbuildfiles_eventstore_1 && docker rm mfbuildfiles_eventstore_1 && docker rmi mfbuildfiles_eventstore
-
-rmData:
-	docker stop mfbuildfiles_datacontainer_1 && docker rm mfbuildfiles_datacontainer_1 && docker rmi mfbuildfiles_datacontainer
-
-nodeContainer: 
-	cd NodeImage && docker build -t mf/nodebox . && cd ..
-
-stopALL:
+stopAllContainers:
 	docker stop $$(docker ps -aq)
 
-removeALL:
+removeAllContainers:
 	docker stop $$(docker ps -aq) && docker rm $$(docker ps -aq)
 
-removeImagesALL: 
+removeAllImages:
 	docker stop $$(docker ps -aq) && docker rm $$(docker ps -aq) && docker rmi $$(docker images -aq)
 
-cleanProjects:
-	docker rm -f mfbuildfiles_workflows_1 && docker rmi mfbuildfiles_workflows && \
-	docker rm -f mfbuildfiles_api_1 && docker rmi mfbuildfiles_api && \
-	docker rm -f mfbuildfiles_postgres_1 && \
-	docker rm -f mfbuildfiles_projections_1 && docker rmi mfbuildfiles_projections 
+removeAllButNode:
+	docker rm -vf $$(docker ps -a -q) 2>/dev/null || echo "No more containers to remove."
+	docker rmi $$(docker images | grep -v ^mf_nodebox  | awk '{print $3}' | sed -n '1!p') 2>/dev/null || echo "No more containers to remove."
 
-deploy:
-	cd ../MF_Infrastructure && gulp && \
-	cd ../MF_MessageBinders && gulp && \
-	cd ../MF_Domain && gulp && \
-	cd ../MF_Api && gulp deploy && \
-	cd ../MF_Workflows && gulp deploy && \
-	cd ../MF_Projections && gulp deploy && \
-	cd ..
-
-cleanALL:
-	echo "stopping containers" 
-#	[ -z $(docker ps -q) ] || docker stop $$(docker ps -q)
-	#docker stop $$(docker ps -q)
-	echo "remove containers" 
-#	[ -z $(docker ps -aq) ] || docker rm -f $$(docker ps -aq)
-	docker rm -f $$(docker ps -aq)
-	echo "remove images" 
-#	[[ -z $$(docker images -q ) ]] || docker rmi -f $$(docker images -q )
-	docker rmi -f $$(docker images -q )
-	echo "move to node dir"
-	cd NodeImage && docker build -t mf/nodebox .
-	echo "return to buildfiles"
-	cd ..
 

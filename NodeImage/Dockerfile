@@ -1,7 +1,7 @@
 # Dockerfile
 FROM node:0.12.7
 
-ENV HOME /home/opt/app
+ENV HOME /home/current
 RUN mkdir -p $HOME
 WORKDIR $HOME
 
