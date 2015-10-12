@@ -15,12 +15,12 @@ pullMF:
 
 comAndPushMF:
 	echo "MF_BuildFiles"; git com $(M) && git push origin master; \
-	$(subst xxx, mf_projections, $(COMPUSH)) \
-	$(subst xxx, mf_domain, $(COMPUSH)) \
-	$(subst xxx, mf_messagebinders, $(COMPUSH)) \
-	$(subst xxx, mf_workflows, $(COMPUSH)) \
-	$(subst xxx, mf_data, $(COMPUSH)) \
-	#$(subst xxx, MF_FrontEnd, $(COMPUSH)) \
+	$(subst xxx,mf_projections, $(COMPUSH)) \
+	$(subst xxx,mf_domain, $(COMPUSH)) \
+	$(subst xxx,mf_messagebinders, $(COMPUSH)) \
+	$(subst xxx,mf_workflows, $(COMPUSH)) \
+	$(subst xxx,mf_data, $(COMPUSH)) \
+	#$(subst xxx,MF_FrontEnd, $(COMPUSH)) \
 	cd ../mf_buildfiles;
 
 pullCore:
