@@ -1,16 +1,16 @@
 libs_for_gcc = -lgnu
 M="commit and push"
-COMPUSH := ../xxx && echo "xxx" && git com $(M) && git push origin master;
+COMPUSH := cd ../xxx && echo "xxx" && git com $(M) && git push origin master;
 PULL := echo "xxx" && cd ../xxx && git pull origin master &&
 
 pullMF:
 	git pull origin master && \
-	$(subst xxx, mf_api, $(PULL)) \
-	$(subst xxx, mf_messagebinders, $(PULL)) \
-	$(subst xxx, mf_workflows, $(PULL)) \
-	$(subst xxx, mf_data, $(PULL)) \
-	$(subst xxx, mf_projections, $(PULL)) \
-	#$(subst xxx, MF_FrontEnd, $(PULL)) \
+	$(subst xxx,mf_api, $(PULL)) \
+	$(subst xxx,mf_messagebinders, $(PULL)) \
+	$(subst xxx,mf_workflows, $(PULL)) \
+	$(subst xxx,mf_data, $(PULL)) \
+	$(subst xxx,mf_projections, $(PULL)) \
+	#$(subst xxx,MF_FrontEnd, $(PULL)) \
 	cd ../mf_buildFiles;
 
 comAndPushMF:
@@ -24,23 +24,23 @@ comAndPushMF:
 	cd ../mf_buildfiles;
 
 pullCore:
-	$(subst xxx, core_eventdispatcher, $(PULL)) \
-	$(subst xxx, core_eventhandlerbase, $(PULL)) \
-	$(subst xxx, core_eventmodels, $(PULL)) \
-	$(subst xxx, core_eventrepository, $(PULL)) \
-	$(subst xxx, core_eventstore, $(PULL)) \
-	$(subst xxx, core_readstorerepository, $(PULL)) \
-	$(subst xxx, core_logger, $(PULL)) \
+	$(subst xxx,core_eventdispatcher, $(PULL)) \
+	$(subst xxx,core_eventhandlerbase, $(PULL)) \
+	$(subst xxx,core_eventmodels, $(PULL)) \
+	$(subst xxx,core_eventrepository, $(PULL)) \
+	$(subst xxx,core_eventstore, $(PULL)) \
+	$(subst xxx,core_readstorerepository, $(PULL)) \
+	$(subst xxx,core_logger, $(PULL)) \
 	cd ..;
 
 comAndPushCore:
-	$(subst xxx, core_eventdispatcher, $(COMPUSH)) \
-	$(subst xxx, core_eventhandlerbase, $(COMPUSH)) \
-	$(subst xxx, core_eventmodels, $(COMPUSH)) \
-	$(subst xxx, core_eventrepository, $(COMPUSH)) \
-	$(subst xxx, core_eventstore, $(COMPUSH)) \
-	$(subst xxx, core_readstorerepository, $(COMPUSH)) \
-	$(subst xxx, core_eventdispatcher, $(COMPUSH)) \
+	$(subst xxx,core_eventdispatcher, $(COMPUSH)) \
+	$(subst xxx,core_eventhandlerbase, $(COMPUSH)) \
+	$(subst xxx,core_eventmodels, $(COMPUSH)) \
+	$(subst xxx,core_eventrepository, $(COMPUSH)) \
+	$(subst xxx,core_eventstore, $(COMPUSH)) \
+	$(subst xxx,core_readstorerepository, $(COMPUSH)) \
+	$(subst xxx,core_eventdispatcher, $(COMPUSH)) \
 	cd ../
 
 buildNodeImage:
