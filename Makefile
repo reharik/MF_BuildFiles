@@ -46,16 +46,16 @@ comAndPushCore:
 buildNodeImage:
 	cd NodeImage && docker build -t mf_nodebox . && cd ..
 
-startWorkflows: buildNodeImage startData
-	cd ../mf_workflows && make build && make run
+startWorkflows: buildNodeImage #startData
+	cd ../mf_workflows && make run
 
 startProjections: buildNodeImage
-	cd ../mf_projections && make build && make run
+	cd ../mf_projections && make run
 
 startApi: buildNodeImage
 	cd ../mf_api && make build && make run
 
-startData: buildNodeImage startData
+startData: buildNodeImage
 	cd ../mf_data && make build && make run
 
 stopAllContainers:
