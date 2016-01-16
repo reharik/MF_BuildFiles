@@ -73,5 +73,9 @@ removeAllButNode:
 
 removeAllButNodeAndData:
 	docker rm -vf $$(docker ps -a -q) 2>/dev/null || echo "No more containers to remove."
-	docker rmi $$(docker images | grep -v -e ^mf_nodebox -e ^postgres -e ^mfdata -e ubuntu | awk '{print $3}' | sed -n '1!p') 2>/dev/null || echo "No more containers to remove."
+	docker rmi $$(docker images | grep -v -e ^mf_nodebox -e ^postgres -e adbrowne/eventstore -e ubuntu | awk '{print $3}' | sed -n '1!p') 2>/dev/null || echo "No more containers to remove."
+
+removeLocalBuilds:
+	docker rm -vf $$(docker ps -a -q) 2>/dev/null || echo "No more containers to remove."
+	docker rmi $$(docker images | grep -v -e ^mf_nodebox -e ^postgres -e adbrowne/eventstore -e ubuntu | awk '{print $3}' | sed -n '1!p') 2>/dev/null || echo "No more containers to remove."
 

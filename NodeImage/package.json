@@ -6,7 +6,7 @@
     "bcrypt": "0.8.x",
     "bluebird": "^2.9.33",
     "config": "^1.14.0",
-    "dagon": "git+https://github.com/reharik/dagon.git",
+    "dagon": "git://github.com/reharik/dagon.git#newVersion",
     "extend": "^3.0.0",
     "ges-client": "0.10.0",
     "invariant": "^2.1.0",

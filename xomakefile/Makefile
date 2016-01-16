@@ -17,6 +17,9 @@ docker-build:
 docker-run: docker-build
 	docker run --rm --env=NODE_ENV=$(NODE_ENV) $(NAME)
 
+run:	docker-build
+	docker-compose -f docker/docker-compose.yml run --rm plugin-dev
+
 jenkins-build:
 	docker build -t $(NAME):$(VERSION) -f docker/Dockerfile .
 	docker tag -f $(NAME):$(VERSION) $(NAME):latest
